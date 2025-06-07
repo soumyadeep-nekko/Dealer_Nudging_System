@@ -1,173 +1,197 @@
-# Dealer_Nudging_System
+# Dealer Nudging System (DNS)
 
-Overview
-The Dealer Nudging System (DNS) is a comprehensive platform designed to help OEMs (Original Equipment Manufacturers) incentivize dealers to sell specific products through various schemes and offers. This improved version focuses on mobile phone dealers but is designed with a flexible schema that can accommodate other product categories.
+The **Dealer Nudging System (DNS)** is a comprehensive platform designed to help OEMs (Original Equipment Manufacturers) incentivize dealers to promote and sell specific products through structured schemes and offers. While the current version is optimized for **mobile phone dealers**, the architecture is flexible enough to accommodate other product categories.
 
-Key Features
-Granular Data Model: Captures detailed product specifications, complex scheme structures, and various incentive types
-PDF Extraction: Automatically extracts scheme details from PDF documents
-Interactive Dashboard: Provides comprehensive insights with advanced visualizations
-Scheme Explorer: Allows detailed exploration of all schemes and their parameters
-Editable Tables: Supports editing of scheme details with approval workflow
-Sales Simulation: Enhanced simulation tool to model different sales scenarios
-Approval Workflow: Structured process for reviewing and approving scheme changes
-System Architecture
-The system consists of the following components:
+---
 
-Database: SQLite database with a comprehensive schema for storing all scheme and sales data
-PDF Processor: Python module for extracting structured data from scheme PDFs
-Streamlit App: Web interface for interacting with the system
-AWS Integration: Optional integration with AWS Bedrock (Claude) and Textract for enhanced PDF processing
-Setup Instructions
-Install Dependencies:
+## 🚀 Key Features
 
+- **Granular Data Model**: Detailed product specs, complex scheme structures, multiple incentive types
+- **PDF Extraction**: Auto-extracts scheme details from PDF documents
+- **Interactive Dashboard**: Visual insights into performance and effectiveness
+- **Scheme Explorer**: Explore schemes, incentives, rules, and structures
+- **Editable Tables**: Update scheme details with an approval workflow
+- **Sales Simulation**: Model sales scenarios and compare outcomes
+- **Approval Workflow**: Review and approve scheme modifications
+
+---
+
+## 🏗️ System Architecture
+
+- **Database**: SQLite schema for storing all scheme and sales data
+- **PDF Processor**: Python module to extract structured data from PDFs
+- **Streamlit App**: User-friendly web interface
+- **AWS Integration (Optional)**: Enhanced extraction via AWS Textract & Bedrock (Claude)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Install Dependencies
+
+```bash
 pip install streamlit plotly pandas boto3 PyPDF2 Pillow pymupdf
-Configure AWS Credentials (Optional):
+2. Configure AWS Credentials (Optional)
+Create a secrets.json file for AWS Textract and Claude integration.
 
-Place your AWS credentials in secrets.json file
-Required for enhanced PDF extraction using AWS Textract and Claude
-Initialize the System:
-
+json
+Copy
+Edit
+{
+  "aws_access_key_id": "YOUR_KEY",
+  "aws_secret_access_key": "YOUR_SECRET",
+  "region_name": "YOUR_REGION"
+}
+3. Initialize the System
+bash
+Copy
+Edit
 python setup.py
 This will:
 
 Create necessary directories
-Initialize the database
-Copy sample PDFs to the schemes directory
-Set up the secrets file
-Process Scheme PDFs:
 
+Initialize the database
+
+Copy sample PDFs to the schemes directory
+
+Set up the secrets file
+
+4. Process Scheme PDFs
+bash
+Copy
+Edit
 python pdf_processor.py
 This will:
 
-Extract data from all PDFs in the schemes directory
+Extract data from all PDFs in the schemes folder
+
 Populate the database with scheme details
+
 Create sample dealers and sales data
-Run the Application:
 
+5. Run the Application
+bash
+Copy
+Edit
 streamlit run app.py
-Database Schema
-The system uses a comprehensive SQLite database with the following tables:
+🗄️ Database Schema
+schemes: Basic scheme info
 
-schemes: Stores basic scheme information
-products: Stores product details with granular specifications
-dealers: Stores dealer information
-scheme_products: Links schemes to products with incentive details
-payout_slabs: Stores quantity-based incentive slabs
-scheme_rules: Stores scheme rules and conditions
-dealer_targets: Stores targets assigned to dealers
-sales_transactions: Records sales transactions
-exchange_transactions: Records device exchange/upgrade transactions
-scheme_approvals: Tracks approval workflow for schemes
-scheme_parameters: Stores additional scheme parameters
-bundle_offers: Stores bundle offer details
-Key Improvements
-Enhanced Data Model:
+products: Product specifications
 
-Added support for RAM, storage, connectivity, and other detailed attributes
-Implemented flexible payout structures (fixed, percentage, slab-based)
-Added support for bundle offers and exchange programs
-Improved Dashboard:
+dealers: Dealer information
 
-Added comprehensive visualizations for scheme effectiveness
-Implemented regional performance tracking
-Added product performance heatmap
-Enhanced dealer performance comparison
-Advanced Features:
+scheme_products: Product–scheme mapping with incentives
 
-Implemented approval workflow for scheme edits
-Enhanced sales simulation with comparative analysis
-Added support for bundle offers and upgrade programs
-Implemented verification workflow for sales transactions
-Technical Improvements:
+payout_slabs: Quantity-based incentives
 
-Optimized PDF extraction process
-Implemented AWS integration for enhanced text extraction
-Designed responsive UI with modern styling
-Added unique keys to all Plotly charts to prevent duplicate ID errors
-Usage Guide
+scheme_rules: Scheme conditions and logic
+
+dealer_targets: Dealer-specific goals
+
+sales_transactions: Records of sales
+
+exchange_transactions: Device upgrade/exchange records
+
+scheme_approvals: Approval workflow records
+
+scheme_parameters: Additional scheme metadata
+
+bundle_offers: Bundle-based promotions
+
+📊 Usage Guide
 Dashboard
-The dashboard provides a comprehensive overview of:
+Active schemes & products
 
-Active schemes and products
-Sales performance over time
-Dealer performance comparison
-Product performance heatmap
-Scheme effectiveness analysis
-Regional performance visualization
+Sales performance trends
+
+Dealer & product comparisons
+
+Regional analytics
+
 Scheme Explorer
-Allows you to:
+Browse, filter, and inspect schemes
 
-Browse all schemes with detailed filtering
-View scheme details including products, incentives, and rules
-Approve or reject pending schemes
+View linked products, incentives, and rules
+
+Approve/reject schemes
+
 Product Catalog
-Provides:
+Detailed specs and filtering
 
-Comprehensive product listing with specifications
-Filtering by category, subcategory, and status
-Product management capabilities
+Add/edit product entries
+
 Dealer Management
-Enables:
+Track dealer performance and status
 
-Dealer listing and filtering
-Dealer performance tracking
-Dealer status management
 Sales Tracker
-Offers:
+List & filter sales transactions
 
-Transaction listing and filtering
-Verification workflow for transactions
-Sales metrics and analysis
+Verify sales activity
+
 Upload Scheme
-Allows:
+Upload scheme PDFs
 
-PDF upload for new schemes
-Automatic extraction of scheme details
-Manual editing of extracted data
-Submission for approval
+Auto-extract and manually edit
+
+Submit for approval
+
 Approval Center
-Provides:
+Review pending changes
 
-Listing of pending approvals
-Review and approval/rejection workflow
-Editing of scheme details before approval
+Approve/reject/edit schemes
+
 Sales Simulation
-Enables:
+Model scenarios
 
-Simulation of sales scenarios
-Comparison of different schemes
-Analysis of dealer economics
-Recording of simulated sales
-Extensibility
-The system is designed to be extensible in the following ways:
+Compare scheme effectiveness
 
-Additional Product Categories: The schema can accommodate various product types beyond mobile phones
-New Scheme Types: The flexible scheme structure supports various incentive models
-Integration Points: The system can be integrated with other systems through API endpoints
-Customizable Visualizations: The dashboard can be extended with additional visualizations
-Troubleshooting
-PDF Extraction Issues:
+Record simulated performance
 
-Ensure PDFs are text-based and not scanned images
-For scanned PDFs, AWS Textract integration provides better results
-Check AWS credentials if using Textract
-AWS Integration:
+🧱 Extensibility
+Product Categories: Add new categories like tablets, accessories, etc.
 
-Verify AWS credentials in secrets.json
-Ensure the specified region matches your AWS setup
-Check that the inference profile ARN is correct for Claude
-Database Issues:
+Incentive Models: Fixed, percentage, slabs, bundles, exchanges
 
-If database becomes corrupted, delete dealer_schemes.db and run setup.py again
-Use the SQLite browser to inspect database contents if needed
-Streamlit Interface:
+Integrations: REST APIs for external systems
 
-If charts don't render, check for duplicate element IDs
-Restart the application if the interface becomes unresponsive
-Future Enhancements
-Multi-user Authentication: Add user roles and permissions
-Mobile App Integration: Develop companion mobile app for dealers
-Advanced Analytics: Implement predictive analytics for sales forecasting
-API Endpoints: Create REST API for integration with other systems
-Notification System: Add email/SMS notifications for scheme updates and approvals
+Visualizations: Custom dashboards for deeper analytics
+
+🛠 Troubleshooting
+PDF Extraction
+Ensure PDFs are text-based
+
+For scanned PDFs, enable AWS Textract
+
+Check AWS credentials and region settings
+
+Database
+If corrupted, delete dealer_schemes.db and re-run setup.py
+
+Use SQLite browser for manual inspection
+
+Streamlit Interface
+Restart if unresponsive
+
+Avoid duplicate chart IDs
+
+🧭 Future Enhancements
+Multi-user authentication and permissions
+
+Mobile app for dealers
+
+Predictive analytics and forecasting
+
+REST API for external integration
+
+Email/SMS notification system
+
+👥 Contributors
+Made with ❤️ by the Nekko Team
+
+📄 License
+This project is licensed under the MIT License.
+
+💬 Feedback & Contributions
+Pull requests and suggestions are welcome! For major changes, please open an issue first to discuss what you’d like to change.
