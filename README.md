@@ -29,23 +29,20 @@ The **Dealer Nudging System (DNS)** is a comprehensive platform designed to help
 
 ### 1. Install Dependencies
 
-```bash
+
 pip install streamlit plotly pandas boto3 PyPDF2 Pillow pymupdf
+
 2. Configure AWS Credentials (Optional)
 Create a secrets.json file for AWS Textract and Claude integration.
 
-json
-Copy
-Edit
+
 {
   "aws_access_key_id": "YOUR_KEY",
   "aws_secret_access_key": "YOUR_SECRET",
   "region_name": "YOUR_REGION"
 }
 3. Initialize the System
-bash
-Copy
-Edit
+
 python setup.py
 This will:
 
@@ -58,9 +55,7 @@ Copy sample PDFs to the schemes directory
 Set up the secrets file
 
 4. Process Scheme PDFs
-bash
-Copy
-Edit
+
 python pdf_processor.py
 This will:
 
@@ -71,9 +66,7 @@ Populate the database with scheme details
 Create sample dealers and sales data
 
 5. Run the Application
-bash
-Copy
-Edit
+
 streamlit run app.py
 🗄️ Database Schema
 schemes: Basic scheme info
